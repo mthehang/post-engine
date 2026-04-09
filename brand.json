@@ -1,0 +1,40 @@
+{
+  "_instructions": "Fill in your brand values here. Run 'npm run render' after updating.",
+
+  "name": "Your Brand",
+  "tagline": "Your tagline here",
+
+  "colors": {
+    "primary":   "#14B8A6",
+    "secondary": "#26D07C",
+    "dark":      "#1A2030",
+    "white":     "#FFFFFF",
+    "lightBg":   "#F4F6F8",
+    "muted":     "#6B7A8D"
+  },
+
+  "gradients": {
+    "primary":   "linear-gradient(135deg, #14B8A6 0%, #26D07C 100%)",
+    "dark":      "linear-gradient(160deg, #050A0D 0%, #0D1B2A 60%, #0A1628 100%)",
+    "card":      "linear-gradient(145deg, #ffffff 0%, #f4f6f8 100%)"
+  },
+
+  "typography": {
+    "font":    "Inter",
+    "fontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  },
+
+  "logo": "./assets/images/logo.svg",
+
+  "borders": {
+    "sm":  "8px",
+    "md":  "16px",
+    "lg":  "24px",
+    "xl":  "32px"
+  },
+
+  "shadows": {
+    "card": "0 8px 32px rgba(20, 184, 166, 0.15)",
+    "text": "0 2px 8px rgba(0,0,0,0.3)"
+  }
+}

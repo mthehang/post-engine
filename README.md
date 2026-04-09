@@ -1,0 +1,209 @@
+# post-engine
+
+An AI-powered pipeline that converts HTML/CSS slides into publication-ready PNG images and MP4 videos for social media — driven by Claude Code or any AI CLI.
+
+Describe the post. The AI designs it. One command renders it.
+
+---
+
+## How it works
+
+```
+Brief → AI generates HTML/CSS → render.js → PNG + MP4 → publish
+```
+
+The AI reads your brand config (`brand.json`), designs self-contained HTML slides for the target platform, and the render scripts convert them to pixel-perfect output using Puppeteer.
+
+**No design tool. No Figma. No Canva. Just code.**
+
+---
+
+## Platforms supported
+
+| Platform | Dimensions | Format |
+|---|---|---|
+| Instagram Carousel | 1080 x 1350 px (4:5) | PNG + MP4 per slide |
+| Instagram Stories | 1080 x 1920 px (9:16) | PNG + MP4 |
+| LinkedIn | 1200 x 627 px (1.91:1) | PNG |
+| TikTok | 1080 x 1920 px (9:16) | PNG + MP4 |
+
+---
+
+## Prerequisites
+
+- Node.js 18+
+- npm
+- ffmpeg (bundled via `ffmpeg-static` — no separate install needed)
+
+---
+
+## Setup
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/mthehang/post-engine.git
+cd post-engine
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+Puppeteer downloads Chromium automatically (~170MB on first install).
+
+### 3. Configure your brand
+
+Edit `brand.json` with your brand values:
+
+```json
+{
+  "name": "Your Brand",
+  "colors": {
+    "primary":   "#14B8A6",
+    "secondary": "#26D07C",
+    "dark":      "#1A2030"
+  },
+  "typography": {
+    "font":    "Inter",
+    "fontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+  },
+  "logo": "./assets/images/logo.svg"
+}
+```
+
+Place your logo at `assets/images/logo.svg` (or update the path in brand.json).
+
+### 4. Configure API credentials (optional — only for publishing)
+
+```bash
+cp .env.example .env
+# Edit .env with your platform credentials
+```
+
+### 5. Install in Claude Code (recommended)
+
+The `CLAUDE.md` file at the repo root is the AI operating manual.
+When you open this folder in Claude Code, it reads `CLAUDE.md` automatically.
+
+```bash
+# Open in Claude Code desktop
+claude .
+
+# Or from terminal
+cd post-engine && claude
+```
+
+---
+
+## Usage with Claude Code
+
+Once inside the session, just describe what you want:
+
+```
+Create an Instagram carousel about the fact that 67% of patients lose their
+medical records when changing doctors. Use a dark, premium healthcare look.
+Brand is already in brand.json.
+```
+
+Claude will:
+1. Read `brand.json`
+2. Generate 4 HTML slides in `output/<post-slug>/`
+3. Run `node scripts/render.js` to produce PNGs
+4. Run `node scripts/render-video.js` to produce MP4s
+5. Generate `legenda.txt` with caption + hashtags
+
+---
+
+## Usage with other AI CLIs
+
+Any AI CLI that reads the `CLAUDE.md` file can operate this pipeline.
+
+**Cursor:** Open the folder, the AI reads `CLAUDE.md` from the workspace.
+
+**Copilot / other:** Paste the contents of `CLAUDE.md` as a system prompt or context file.
+
+---
+
+## Manual rendering
+
+If you write or edit HTML slides yourself:
+
+```bash
+# Render a full post folder to PNG
+node scripts/render.js output/my-post/
+
+# Render a single slide
+node scripts/render.js output/my-post/slide-01.html
+
+# Render to MP4 (10s looping video, 24fps)
+node scripts/render-video.js output/my-post/
+
+# Render all output/filled-*.html at once
+node scripts/render.js
+```
+
+---
+
+## Manual publishing
+
+After rendering, `manifest.json` is written to the post folder automatically.
+
+```bash
+# Instagram (reads caption from argument, images from manifest.json)
+node scripts/publish-instagram.js "Caption text #hashtag" output/my-post/manifest.json
+
+# LinkedIn
+node scripts/publish-linkedin.js "Post text" output/my-post/manifest.json
+```
+
+---
+
+## Project structure
+
+```
+post-engine/
+├── scripts/
+│   ├── render.js              HTML → PNG
+│   ├── render-video.js        HTML → MP4
+│   ├── publish-instagram.js   Instagram Graph API
+│   └── publish-linkedin.js    LinkedIn UGC Posts API
+├── templates/
+│   ├── instagram-carousel/    1080x1350 base templates
+│   ├── instagram-stories/     1080x1920 base templates
+│   ├── linkedin-post/         1200x627 base templates
+│   └── tiktok-slide/          1080x1920 base templates
+├── output/                    Generated posts (gitignored)
+├── assets/images/             Your logo and static assets
+├── brand.json                 Brand config — edit this first
+├── .env.example               API credentials template
+├── CLAUDE.md                  AI operating manual
+└── package.json
+```
+
+---
+
+## Design system
+
+All generated slides follow a consistent visual language:
+
+- **Brand bars:** 6px top bar + 5px bottom bar with brand gradient on every slide
+- **Animation loop:** 10s, 24fps — elements enter at 0–35%, hold at 35–85%, fade at 85–95%
+- **Typography:** Weight 900 headlines at 88–120px, weight 400 body at 28–36px
+- **No page counters** on any slide
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, open an issue first.
+
+---
+
+## License
+
+MIT — Copyright (c) 2025 ClueMed Tecnologia em Saude Ltda.
+
+Free to use, modify, and distribute. See `LICENSE` for details.

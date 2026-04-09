@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080" />
+  <title>Carousel Slide</title>
+  <!--
+    Replace FONT_URL_PLACEHOLDER with brand.typography.fontUrl
+    Claude generates filled slides as standalone HTML with all CSS inline.
+    This template shows available variants — use only the one needed.
+
+    Markers Claude replaces when generating:
+      {{BRAND_NAME}}   — brand.name
+      {{LOGO_URL}}     — brand.logo (relative or absolute)
+      {{HEADLINE}}     — main headline text
+      {{BODY}}         — body / supporting text
+      {{IMAGE_URL}}    — image src (local path or https URL)
+      {{STAT_VALUE}}   — large number (stat slides)
+      {{CTA_WORD}}     — single action word for CTA slide (e.g. "COMMENT")
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="FONT_URL_PLACEHOLDER" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── VARIANT: COVER (slide 1) ─────────────────────────────────────── -->
+  <div class="slide slide--cover" data-variant="cover">
+    <div class="top-bar"></div>
+    <div class="bg-image" style="--bg-image-url: url('{{IMAGE_URL}}')"></div>
+    <div class="content">
+      <div class="logo-row">
+        <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+      </div>
+      <h1 class="headline">{{HEADLINE}}</h1>
+      <p class="subtitle">{{BODY}}</p>
+    </div>
+    <div class="hint">swipe &rarr;</div>
+    <div class="bottom-bar"></div>
+  </div>
+
+  <!-- ── VARIANT: CONTENT (middle slides) ─────────────────────────────── -->
+  <div class="slide slide--content" data-variant="content" style="display:none">
+    <div class="top-bar"></div>
+    <div class="logo-row">
+      <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+    </div>
+    <h2 class="headline">{{HEADLINE}}</h2>
+    <p class="body-text">{{BODY}}</p>
+    <img class="image-block" src="{{IMAGE_URL}}" alt="" />
+    <div class="bottom-bar"></div>
+  </div>
+
+  <!-- ── VARIANT: CONTENT TEXT-ONLY ────────────────────────────────────── -->
+  <div class="slide slide--content" data-variant="content-text" style="display:none">
+    <div class="top-bar"></div>
+    <div class="logo-row">
+      <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+    </div>
+    <h2 class="headline">{{HEADLINE}}</h2>
+    <div class="divider"></div>
+    <p class="body-text">{{BODY}}</p>
+    <div class="bottom-bar"></div>
+  </div>
+
+  <!-- ── VARIANT: STAT ─────────────────────────────────────────────────── -->
+  <div class="slide slide--stat" data-variant="stat" style="display:none">
+    <div class="top-bar"></div>
+    <div class="stat-value">{{STAT_VALUE}}</div>
+    <p class="stat-label">{{HEADLINE}}</p>
+    <div class="bottom-bar"></div>
+  </div>
+
+  <!-- ── VARIANT: CTA (last slide) ─────────────────────────────────────── -->
+  <div class="slide slide--cta" data-variant="cta" style="display:none">
+    <div class="top-bar"></div>
+    <p class="cta-label">{{BRAND_NAME}}</p>
+    <div class="cta-headline">{{CTA_WORD}}</div>
+    <p class="cta-sub">{{BODY}}</p>
+    <div class="bottom-bar"></div>
+  </div>
+
+</body>
+</html>

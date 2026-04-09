@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <title>LinkedIn Post</title>
+  <!--
+    Dimensions: 1200 x 627 (landscape, 1.91:1)
+    Detected by filename containing "linkedin"
+
+    Validated layout (golden ratio):
+      Photo area:  38.2% left  (459px)
+      Text area:   61.8% right (741px)
+      Inner circle inset with brand image — premium editorial feel
+
+    Markers:
+      {{BRAND_NAME}}  {{LOGO_URL}}  {{HEADLINE}}  {{STAT_PRIMARY}}  {{STAT_LABEL}}
+      {{STAT_SECONDARY}}  {{STAT_SECONDARY_LABEL}}  {{IMAGE_URL}}
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="FONT_URL_PLACEHOLDER" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:  #14B8A6;
+      --secondary:#26D07C;
+      --dark:     #1A2030;
+      --muted:    #6B7A8D;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    html, body {
+      width: 1200px;
+      height: 627px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .post {
+      width: 1200px;
+      height: 627px;
+      display: grid;
+      grid-template-columns: 459px 1fr;
+      position: relative;
+      background: #F7F4EE;
+      overflow: hidden;
+    }
+
+    /* ── Left: photo column ── */
+    .photo-col {
+      position: relative;
+      background: var(--dark);
+      overflow: hidden;
+    }
+    .photo-col .bg {
+      position: absolute;
+      inset: 0;
+      background-image: var(--bg-image-url);
+      background-size: cover;
+      background-position: center;
+      opacity: 0.85;
+    }
+    .photo-col .circle-inset {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background-image: var(--bg-image-url);
+      background-size: cover;
+      background-position: center;
+      border: 6px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 0 2px var(--primary), 0 24px 80px rgba(0,0,0,0.4);
+    }
+
+    /* ── Right: text column ── */
+    .text-col {
+      padding: 52px 56px 44px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-row img { height: 28px; width: auto; }
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 0.5px;
+    }
+    .headline {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      color: var(--dark);
+      text-transform: uppercase;
+      max-width: 600px;
+    }
+    .headline .accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stats-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+    }
+    .stat-primary .value {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -3px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-primary .label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      max-width: 280px;
+      line-height: 1.4;
+    }
+    .stat-secondary .value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+    .stat-secondary .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ── Accent bar (left edge of text col) ── */
+    .accent-edge {
+      position: absolute;
+      left: 459px;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--gradient);
+    }
+  </style>
+</head>
+<body>
+  <div class="post">
+    <div class="photo-col">
+      <div class="bg" style="--bg-image-url: url('{{IMAGE_URL}}')"></div>
+      <div class="circle-inset" style="--bg-image-url: url('{{IMAGE_URL}}')"></div>
+    </div>
+    <div class="accent-edge"></div>
+    <div class="text-col">
+      <div class="logo-row">
+        <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+        <span class="brand-name">{{BRAND_NAME}}</span>
+      </div>
+      <h1 class="headline">{{HEADLINE}}</h1>
+      <div class="stats-row">
+        <div class="stat-primary">
+          <div class="value">{{STAT_PRIMARY}}</div>
+          <div class="label">{{STAT_LABEL}}</div>
+        </div>
+        <div class="stat-secondary">
+          <div class="value">{{STAT_SECONDARY}}</div>
+          <div class="label">{{STAT_SECONDARY_LABEL}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

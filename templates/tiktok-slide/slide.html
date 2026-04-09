@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080" />
+  <title>TikTok Slide</title>
+  <!--
+    Dimensions: 1080 x 1920 (9:16)
+    Detected by filename containing "tiktok"
+
+    High-contrast, bold, mobile-first.
+    Designed to compete with native TikTok content — no corporate feel.
+
+    Markers:
+      {{BRAND_NAME}}  {{LOGO_URL}}  {{HEADLINE}}  {{BODY}}
+      {{IMAGE_URL}}   {{STAT_VALUE}}  {{CTA_WORD}}
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="FONT_URL_PLACEHOLDER" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:  #14B8A6;
+      --secondary:#26D07C;
+      --dark:     #0A0A0A;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    html, body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .slide {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 100px 72px;
+      background: var(--dark);
+      color: #fff;
+      overflow: hidden;
+    }
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: var(--bg-image-url);
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      z-index: 1;
+    }
+    .top-bar, .bottom-bar {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: var(--gradient);
+      z-index: 100;
+    }
+    .top-bar    { top: 0;    height: 8px; }
+    .bottom-bar { bottom: 0; height: 6px; }
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .logo-row img { height: 40px; width: auto; }
+    .brand-tag {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 1px;
+    }
+    .headline {
+      font-size: 96px;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -2.5px;
+      color: #fff;
+      margin-bottom: 36px;
+    }
+    .headline .accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-callout {
+      display: inline-block;
+      font-size: 56px;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    .body-text {
+      font-size: 34px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+      max-width: 900px;
+      margin-bottom: 48px;
+    }
+    .cta-pill {
+      display: inline-block;
+      padding: 22px 56px;
+      border-radius: 60px;
+      background: var(--gradient);
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-bar"></div>
+    <div class="bg-image" style="--bg-image-url: url('{{IMAGE_URL}}')"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="logo-row">
+        <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+        <span class="brand-tag">{{BRAND_NAME}}</span>
+      </div>
+      <div class="stat-callout">{{STAT_VALUE}}</div>
+      <h1 class="headline">{{HEADLINE}}</h1>
+      <p class="body-text">{{BODY}}</p>
+      <div class="cta-pill">{{CTA_WORD}}</div>
+    </div>
+    <div class="bottom-bar"></div>
+  </div>
+</body>
+</html>

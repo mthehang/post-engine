@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080" />
+  <title>Stories Slide</title>
+  <!--
+    Dimensions: 1080 x 1920 (9:16)
+    Detected by filename containing "stories"
+
+    Markers:
+      {{BRAND_NAME}}  {{LOGO_URL}}  {{HEADLINE}}  {{BODY}}  {{IMAGE_URL}}  {{CTA_WORD}}
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="FONT_URL_PLACEHOLDER" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:  #14B8A6;
+      --secondary:#26D07C;
+      --dark:     #1A2030;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    html, body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .slide {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 100px 80px;
+      background: linear-gradient(160deg, #050A0D 0%, #0D1B2A 60%, #0A1628 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: var(--bg-image-url);
+      background-size: cover;
+      background-position: center;
+      opacity: 0.20;
+      z-index: 0;
+    }
+    .top-bar, .bottom-bar {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: var(--gradient);
+      z-index: 100;
+    }
+    .top-bar    { top: 0;    height: 8px; }
+    .bottom-bar { bottom: 0; height: 6px; }
+    .content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 80px;
+    }
+    .logo-row img { height: 44px; width: auto; }
+    .headline {
+      font-size: 112px;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -3px;
+      color: rgba(255,255,255,0.94);
+      margin-bottom: 40px;
+    }
+    .headline .accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .body-text {
+      font-size: 36px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      max-width: 840px;
+    }
+    .divider {
+      width: 80px; height: 6px;
+      border-radius: 3px;
+      background: var(--gradient);
+      margin: 50px 0;
+    }
+    .cta-tag {
+      display: inline-block;
+      padding: 18px 48px;
+      border-radius: 60px;
+      background: var(--gradient);
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 60px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top-bar"></div>
+    <div class="bg-image" style="--bg-image-url: url('{{IMAGE_URL}}')"></div>
+    <div class="content">
+      <div class="logo-row">
+        <img src="{{LOGO_URL}}" alt="{{BRAND_NAME}}" />
+      </div>
+      <h1 class="headline">{{HEADLINE}}</h1>
+      <div class="divider"></div>
+      <p class="body-text">{{BODY}}</p>
+      <div class="cta-tag">{{CTA_WORD}}</div>
+    </div>
+    <div class="bottom-bar"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+node_modules/
+.env
+
+# Rendered output (do not commit generated images/videos)
+output/*/
+!output/.gitkeep
+
+# Temporary frame files from video render
+*/_frames_tmp/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
